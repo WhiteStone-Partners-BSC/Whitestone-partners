@@ -145,8 +145,9 @@ nav.scrolled .nav-links a:hover{color:var(--navy);}
 .ok p{font-size:13px;color:#2e7d32;line-height:1.7;}
 .err{display:none;background:#fff0f0;border:1px solid #ffb3b3;border-radius:8px;padding:1.25rem;margin-top:1rem;text-align:center;font-size:13px;color:#c0392b;}
 .tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:7px;margin-bottom:1.25rem;}
-.tb{padding:9px 12px;border:1px solid var(--border);border-radius:5px;font-size:12.5px;font-family:"DM Sans",sans-serif;color:var(--mid);background:var(--white);cursor:pointer;text-align:center;transition:all 0.15s;}
-.tb:hover,.tb.sel{border-color:var(--blue);color:var(--blue);background:#eef4fb;}
+.tb{padding:9px 12px;border:1px solid var(--border);border-radius:5px;font-size:12.5px;font-family:"DM Sans",sans-serif;color:var(--mid);background:var(--white);cursor:pointer;text-align:center;transition:all 0.15s;user-select:none;}
+.tb:hover{border-color:var(--blue);color:var(--blue);background:#eef4fb;}
+.tb.sel{border-color:var(--blue);color:var(--white);background:var(--blue);}
 .gs-note{display:flex;align-items:center;gap:9px;background:#eef7f0;border:1px solid #b2d9bc;border-radius:5px;padding:10px 14px;font-size:12px;color:#256b35;margin-bottom:0.85rem;}
 .gs-dot{width:7px;height:7px;background:#4caf50;border-radius:50%;flex-shrink:0;}
 .conn{display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;color:#1b5e20;font-size:11px;padding:4px 11px;border-radius:20px;margin-bottom:1.5rem;}
@@ -457,9 +458,9 @@ footer{background:var(--navy);padding:3rem;}
         <div class="conn"><div class="gs-dot"></div> Connected to Google Sheets</div>
         <div class="ft">Service Ticket</div>
         <div class="fs">Complete all fields. This ticket will be logged automatically to the Whitestone Partners Google Sheet with a unique ticket number and timestamp.</div>
-        <p class="slbl">Service Type</p>
+        <p class="slbl">Service Type <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;color:var(--light);">— select all that apply</span></p>
         <div class="tg">
-          <div class="tb sel">Basic Summer Prep Inboard</div>
+          <div class="tb">Basic Summer Prep Inboard</div>
           <div class="tb">Basic Summer Prep Outboard</div>
           <div class="tb">Fuel System Service</div>
           <div class="tb">Impeller Cooling System Service</div>
@@ -586,8 +587,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.querySelectorAll(".tb").forEach(function(btn) {
     btn.addEventListener("click", function() {
-      document.querySelectorAll(".tb").forEach(function(b) { b.classList.remove("sel"); });
-      btn.classList.add("sel");
+      btn.classList.toggle("sel");
+      var anySelected = document.querySelectorAll(".tb.sel").length > 0;
+      if (!anySelected) { btn.classList.add("sel"); }
     });
   });
 
@@ -648,11 +650,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!dealer || !fname || !lname) { alert("Please fill in dealership name and customer name."); return; }
     var btn = document.getElementById("ticket-btn");
     btn.disabled = true; btn.textContent = "Submitting...";
-    var sel = document.querySelector(".tb.sel");
+    var selBtns = document.querySelectorAll(".tb.sel");
+    var serviceTypes = Array.from(selBtns).map(function(b) { return b.textContent.trim(); }).join(", ");
     fetch(SHEETS_URL, {
       method: "POST",
       body: JSON.stringify({
-        serviceType: sel ? sel.textContent.trim() : "Engine Oil Service",
+        serviceType: serviceTypes || "Engine Oil Service",
         dealership: dealer,
         technician: document.getElementById("t-tech").value,
         firstName: fname, lastName: lname,
