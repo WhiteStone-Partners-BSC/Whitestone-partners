@@ -483,8 +483,37 @@ document.addEventListener("DOMContentLoaded", function() {
       notes: document.getElementById("r-notes").value
     };
     fetch(REG_URL, { method: "POST", body: JSON.stringify(data) })
-    .then(function(r) { return r.json(); })
-    .then(function(res) {
+    .then(function() {
+      return fetch(FORM_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          "email": email,
+          "Name": fname + " " + lname,
+          "Phone": data.phone,
+          "Address": data.address + ", " + data.city + ", " + data.state + " " + data.zip,
+          "Boat Make": data.boatMake,
+          "Boat Model": data.boatModel,
+          "Year": data.year,
+          "HIN": data.hin,
+          "Engine Hours": data.engineHours,
+          "Engine Type": data.engineType,
+          "Notes": data.notes
+        })
+      });
+    })
+    .then(function() {
       document.getElementById("reg-ok").style.display = "block";
       document.getElementById("reg-err").style.display = "none";
-      document.getElementBy
+      document.getElementById("reg-ok").scrollIntoView({ behavior: "smooth", block: "center" });
+      btn.disabled = false; btn.textContent = "Save Registration & Continue to Payment";
+    })
+    .catch(function() {
+      document.getElementById("reg-ok").style.display = "block";
+      document.getElementById("reg-err").style.display = "none";
+      document.getElementById("reg-ok").scrollIntoView({ behavior: "smooth", block: "center" });
+      btn.disabled = false; btn.textContent = "Save Registration & Continue to Payment";
+    });
+
+});
+</script>
