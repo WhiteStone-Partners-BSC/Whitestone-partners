@@ -191,14 +191,13 @@ footer{background:var(--navy2);padding:3.5rem 3rem 2rem;}
     <li><a id="nl-cov">Coverage</a></li>
     <li><a id="nl-about">About</a></li>
     <li><a id="nl-contact">Contact</a></li>
-    <li><a id="nl-register" style="font-size:12px;opacity:0.5;">Boat Owner?</a></li>
     <li><a id="nl-partner" class="nav-cta">Become a Partner</a></li>
   </ul>
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a id="mm-hiw">How It Works</a><a id="mm-cov">Coverage</a><a id="mm-about">About</a>
-  <a id="mm-contact">Contact</a><a id="mm-register">Boat Owner? Register Here</a>
+  <a id="mm-contact">Contact</a>
   <a id="mm-partner" class="mob-cta">Become a Partner</a>
 </div>
 <div id="page-home" class="page active">
@@ -529,13 +528,11 @@ document.addEventListener("DOMContentLoaded",function(){
   document.getElementById("nl-cov").addEventListener("click",function(){gs("coverage");});
   document.getElementById("nl-about").addEventListener("click",function(){sp("about");});
   document.getElementById("nl-contact").addEventListener("click",function(){sp("contact");});
-  document.getElementById("nl-register").addEventListener("click",function(){sp("register");});
   document.getElementById("nl-partner").addEventListener("click",function(){sp("partner");});
   document.getElementById("mm-hiw").addEventListener("click",function(){cm();gs("how-it-works");});
   document.getElementById("mm-cov").addEventListener("click",function(){cm();gs("coverage");});
   document.getElementById("mm-about").addEventListener("click",function(){cm();sp("about");});
   document.getElementById("mm-contact").addEventListener("click",function(){cm();sp("contact");});
-  document.getElementById("mm-register").addEventListener("click",function(){cm();sp("register");});
   document.getElementById("mm-partner").addEventListener("click",function(){cm();sp("partner");});
   document.getElementById("hero-partner").addEventListener("click",function(){sp("partner");});
   document.getElementById("hero-hiw").addEventListener("click",function(){gs("how-it-works");});
