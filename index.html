@@ -332,7 +332,7 @@ footer{background:var(--navy2);padding:3.5rem 3rem 2rem;}
       <p>Whitestone Partners LLC is a boat service contract company based in St. George, Utah. We partner with certified marine dealers to deliver comprehensive annual maintenance contracts to boat owners.</p>
       <p>Our program is dealer-first by design. We handle the contracts, billing, and administration. Dealers handle the work. Boat owners get peace of mind. Everyone wins.</p>
       <div class="about-vals">
-        <div class="about-val"><h4>Transparency</h4><p>One flat rate, no hidden fees, no surprises.</p></div>
+        <div class="about-val"><h4>Transparency</h4><p>No surprises.</p></div>
         <div class="about-val"><h4>Reliability</h4><p>Certified dealers, consistent standards, documented history.</p></div>
         <div class="about-val"><h4>Simplicity</h4><p>One contract covers everything for a full year.</p></div>
         <div class="about-val"><h4>Partnership</h4><p>We succeed when our dealers and customers succeed.</p></div>
@@ -530,7 +530,7 @@ footer{background:var(--navy2);padding:3.5rem 3rem 2rem;}
     <div class="form-card">
       <p style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Boat Owner Registration</p>
       <div class="form-title">Register Your Boat</div>
-      <div class="form-sub">Complete your registration then proceed to secure payment.</div>
+      <div class="form-sub">Complete your registration.</div>
       <p class="slbl">Your Information</p>
       <div class="fr">
         <div class="fg"><label>First Name</label><input type="text" id="r-fname" placeholder="First name"></div>
@@ -569,20 +569,14 @@ footer{background:var(--navy2);padding:3.5rem 3rem 2rem;}
       </div>
       <div class="fg"><label>Notes <span style="font-weight:300;text-transform:none;letter-spacing:0;">(optional)</span></label><textarea id="r-notes" placeholder="Anything else we should know?"></textarea></div>
       <div class="fdiv"></div>
-      <div style="background:var(--navy2);border-radius:8px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem;">
-        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:0.2rem;">Annual Service Contract</h4><p style="font-size:13px;color:rgba(191,207,220,0.65);">10 covered services — one flat rate</p></div>
-        <div style="text-align:right;"><div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--white);line-height:1;"><sup style="font-size:18px;vertical-align:super;">$</sup>3,699</div><div style="font-size:12px;color:var(--silver);">Per year</div></div>
-      </div>
       <div class="checkbox-row">
         <input type="checkbox" id="tc-agree">
         <label for="tc-agree">I have read and agree to the <a id="tc-link">Terms &amp; Conditions</a> of the Whitestone Partners annual boat service contract.</label>
       </div>
-      <button class="sub-btn" id="reg-btn">Save Registration &amp; Continue to Payment</button>
-      <div class="reg-note"><span class="stripe-badge-sm">Stripe</span> Secured by Stripe — you'll be redirected to complete payment.</div>
+      <button class="sub-btn" id="reg-btn">Save Registration</button>
       <div id="reg-ok" class="form-ok">
         <h3>Registration saved!</h3>
-        <p>Click below to complete your payment and activate your contract.</p>
-        <a href="https://buy.stripe.com/test_28EfZi29Oa9leJNgxN8Ra00" target="_blank" style="display:inline-block;margin-top:0.75rem;background:#1b5e20;color:white;padding:12px 28px;border-radius:4px;font-size:12px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;">Complete Payment</a>
+        <p>Your registration has been submitted.</p>
       </div>
       <div id="reg-err" class="form-err">Something went wrong. Please try again.</div>
     </div>
@@ -605,7 +599,7 @@ footer{background:var(--navy2);padding:3.5rem 3rem 2rem;}
       <div class="tc-st">5. Cancellation &amp; Refunds</div>
       <p class="tc-body">Cancellation and refund terms will be provided at time of purchase.</p>
       <div class="tc-st">6. Limitation of Liability</div>
-      <p class="tc-body">Total liability shall not exceed the original contract price.</p>
+      <p class="tc-body">Total liability shall not exceed the original contract value.</p>
       <div class="tc-st">7. Disputes</div>
       <p class="tc-body">Disputes go to good-faith negotiation first; unresolved within 30 days proceed to binding arbitration.</p>
       <div class="tc-st">8. Contact</div>
@@ -841,7 +835,7 @@ document.addEventListener("DOMContentLoaded",function(){
     var btn=document.getElementById("reg-btn");btn.disabled=true;btn.textContent="Saving...";
     document.getElementById("reg-ok").style.display="block";
     document.getElementById("reg-ok").scrollIntoView({behavior:"smooth",block:"center"});
-    btn.disabled=false;btn.textContent="Save Registration & Continue to Payment";
+    btn.disabled=false;btn.textContent="Save Registration";
   });
   document.getElementById("contact-btn").addEventListener("click",function(){
     var fn=document.getElementById("c-fname").value,em=document.getElementById("c-email").value;
